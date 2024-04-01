@@ -22,7 +22,6 @@ int max(int size , int tab[size]){
             }
             else if(j==0 && i!=0 ){
                 resultat[i][j] = matrix[i][j] + max( 2 , (int[]){resultat[i - 1][j], resultat[i - 1][j + 1]});
-                //resultat[i][j] = matrix[i][j] + max( 2 , (int[]){resultat[i - 1][j], resultat[i - 1][j + 1]});
             }
             else if(j==m-1 && i!=0){
                 resultat[i][j]=matrix[i][j] + max(2 , (int[]){resultat[i-1][j], resultat[i-1][j-1]});
@@ -33,18 +32,10 @@ int max(int size , int tab[size]){
             }
         }
     }
-      for (int i= 0; i<n; i++){
-        printf("\r\n------------------------\r\n");
-        for(int j=0; j<m; j++){
-            printf(" | %d", resultat[i][j]);
-        }}
+    
     gold = max(m, resultat[n-1]);
     return gold;
 }
-
-
-
-
 int main(){
 int n=4, m=5;
 int matrix[4][5] = {
