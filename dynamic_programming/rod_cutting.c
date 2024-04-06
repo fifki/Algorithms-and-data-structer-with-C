@@ -36,14 +36,18 @@ int rod_cut(int n, int nb , int prices[nb]){
             resultat[i]=max(resultat[i], prices[j]+resultat[i-j]);
         }
     } 
+    //debug
+    /*/
     printf( " \r\n----------------------------\r\n");
     for (int i = 0; i < n+1; i++)
     {
         printf(" | %d ", resultat[i]);
     } 
- printf( " \r\n----------------------------\r\n");
+ printf( " \r\n----------------------------\r\n");*/
+ 
     return resultat[n];
 }
+/*/
 int main(){
     int n=8;
     int nb=9;
@@ -51,8 +55,8 @@ int main(){
     int result=rod_cut(n, nb, prices);
     printf("%d\r\n", result);
     return 0;
-}
-/*
+}*/
+
 int main(){
     int n, nb;
     printf("what is n ?\r\n");
@@ -67,4 +71,5 @@ int main(){
     }
     int result=rod_cut(n, nb, prices);
     printf("%d\r\n", result);
-    return 0;*/
+    return 0;
+}
