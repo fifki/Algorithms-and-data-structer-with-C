@@ -28,6 +28,8 @@ for (int i=1; i<m+1;i++ ){
 }
  return resultat[m]; 
 }
+//test
+/**
 int main(){
     int money=80;
     int nb=3;
@@ -36,4 +38,21 @@ int main(){
     nb_coin=coin_change(money, nb ,possible_coin );
     printf(" the nb_coin are %d\r\n", nb_coin);
         return 0;
+}*/
+//the reuseble code
+int main(){
+int money, nb;
+    printf("how much money do u have?\r\n");
+    scanf("%d", &money);
+    printf("how much coins do u have?\r\n");
+    scanf("%d", &nb);
+    int possible_coin[nb];
+    printf("write the coins?\r\n");
+    for (int i = 0; i < nb; i++)
+    {
+        scanf("%d", &possible_coin[i]);
+    }
+    int nb_coin=coin_change(money, nb ,possible_coin );
+    printf(" the min nb of coins  %d\r\n", nb_coin);
+    return 0;
 }

@@ -32,10 +32,11 @@ int max(int size , int tab[size]){
             }
         }
     }
-    
     gold = max(m, resultat[n-1]);
     return gold;
 }
+//test
+/*
 int main(){
 int n=4, m=5;
 int matrix[4][5] = {
@@ -44,8 +45,26 @@ int matrix[4][5] = {
    {8, 5, 12, 32, 21},
    {3, 20, 2, 9, 7}
    };
-int resultat= gold_mine(n , m , matrix);
+    int resultat= gold_mine(n , m , matrix);
+    printf("\r\n %d", resultat);
+    return 0;
+}*/
 
-printf("\r\n %d", resultat);
+int main(){
+    int n, m;
+    printf("what is n ?\r\n");
+    scanf("%d", &n);
+    printf("what is m?\r\n");
+    scanf("%d", &m);
+    int matrix[n][m];
+    printf("write the matrix?\r\n");
+    for (int i = 0; i < n; i++)
+    {
+        for(int j=0; j<m; j++){
+        scanf("%d", &matrix[i][j]);
+        }
+    }
+    int resultat= gold_mine(n , m , matrix);
+    printf("\r\n %d", resultat);
     return 0;
 }

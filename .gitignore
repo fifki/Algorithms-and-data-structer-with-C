@@ -1,3 +1,6 @@
 .vscode
 dynamic_programming/coin_change.exe
 dynamic_programming/knapsack.exe
+dynamic_programming/.gold_mine_pb
+dynamic_programming/gold_mine_pb.exe
+dynamic_programming/ways_to_climb.exe

@@ -49,17 +49,10 @@ int knapsac(int cap, int items, int valeur[items], int weight[items]){
             }
         }
     }
-    for (int i = 0; i < items ; i++)
-    {
-        printf("\r\n ---------------------------------------------------- \r\n");
-        for (int j=0; j<cap; j++){
-            printf("| %d",resultat[i][j] );
-            
-        }
-    }
-printf("\r\n");
 return resultat[items-1][cap];
-}
+} 
+//test 
+/*
 int main(){
     int items=5;
     int cap=20;
@@ -67,5 +60,30 @@ int main(){
     int weight[5]={6,13,5,10,3};
     int result=knapsac(cap , items , valeur , weight);
     printf("%d\r\n", result);
+    return 0;
+}*/
+
+//to be able to ajuste the code use this main:
+
+int main(){
+int items, cap;
+    printf("how many items do u have?\r\n");
+    scanf("%d", &items);
+    printf("what is the kapacity of the knapsac?\r\n");
+    scanf("%d", &cap);
+    int weight[items];
+    printf("write the items?\r\n");
+    for (int i = 0; i < items ; i++)
+    {
+        scanf("%d", &weight[i]);
+    }
+    int valeur[items];
+    printf("the value of the items ?\r\n");
+    for (int i = 0; i < items; i++)
+    {
+        scanf("%d", &valeur[i]);
+    }
+    int result=knapsac(cap , items , valeur , weight);
+    printf(" the maximum value is  %d\r\n", result);
     return 0;
 }

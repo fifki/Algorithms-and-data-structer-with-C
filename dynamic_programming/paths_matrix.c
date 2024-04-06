@@ -58,21 +58,30 @@ for (int i=0; i<n ; i++){
     }
     return resultat[n-1][m-1];
 }
+//test
+/*/
 int main(){
 int n=4 , m =5 ;
 int matrice [4][5]={
     { 0, 0, 1, 0, 1 },
     {0, 0, 0, 0, 1 },
     { 0, 0, 1, 0, 0 },
-    {1, 0, 0, 0, 0 }
-};
-    /*scanf("%d%d", &n , &m);
+    {1, 0, 0, 0, 0 } };
+    printf("\n");
+    int resultat = Path(n, m, matrice);
+    printf("\r\n number of paths in matrix  is : %d\r\n ", resultat);
+    return 0;
+}*/
+
+int main(){
+    int n, m; 
+    scanf("%d%d", &n , &m);
     int matrice [n][m];
     for (int i=0; i<n ; i++){
         for (int j=0; j<m ; j++){
             scanf("%d", &matrice[i][j]);
         }
-    }*/
+    }
     printf("\n");
     int resultat = Path(n, m, matrice);
     printf("\r\n number of paths in matrix  is : %d\r\n ", resultat);
