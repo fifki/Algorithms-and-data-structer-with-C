@@ -19,7 +19,7 @@ for (int i = 1; i < nb; i++)
     max=0;
     for (int j = 0 ; j < i ; j++)
     {
-        if(array[j]< array[i]&& resultat[j]>max){
+        if(array[j]< array[i] && resultat[j]>max){
         max=resultat[j];
         }
        
