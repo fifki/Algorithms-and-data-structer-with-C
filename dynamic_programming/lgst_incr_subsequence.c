@@ -41,6 +41,6 @@ int main(){
 int nb=13 ; 
 int array[13]={7, 5, 2, 4, 7, 2, 3, 6, 4, 5, 12, 1, 7};
 int resultat= longest(nb , array);
-printf("\r\n%d\r\n", resultat);
+printf("%d\r\n", resultat);
     return 0;
 }
