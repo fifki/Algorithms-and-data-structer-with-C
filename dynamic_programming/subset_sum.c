@@ -22,27 +22,36 @@ int subset_sum(int k, int nb , int array[nb]){
     if(k>somme || nb==0 ){return 0;}
 
     else{
-        
         resultat[0][0]=1;
-        if(array[0]<=k){
-            resultat[0][array[0]]=1;
-        }
-
-        for (int i = 1; i < nb; i++)
+        for (int i = 0; i < nb; i++)
         {
             for (int j = 0; j < k+1; j++)
-            {
-                if(j-array[i]>=0){
-                    resultat[i][j]=resultat[i-1][j]+resultat[i-1][j-array[i]];
+            {    
+                if(j==0) {
+                    resultat[i][0]=1;
+                } 
+                else if(i==0) {
+                    if(array[0]==j){
+                        resultat[0][j]=1;
+                    }
+                    else{
+                        resultat[0][j]=0;
+                    }
                 }
                 else{
-                    resultat[i][j]=resultat[i-1][j];
+                    if(j-array[i]>=0){
+                        resultat[i][j]=resultat[i-1][j]+resultat[i-1][j-array[i]];
+                    }
+                    else{
+                        resultat[i][j]=resultat[i-1][j];
+                    }
                 }
             }
         } 
         }
     
     //debug:
+    /*
         for (int i = 0; i < nb; i++)
     {
         printf( " \r\n----------------------------\r\n");
@@ -50,13 +59,33 @@ int subset_sum(int k, int nb , int array[nb]){
         {
             printf(" | %d ", resultat[i][j]);
         } 
-    }
+    }*/ 
+
     return resultat[nb-1][k];
 }
+//test
+/*
 int main(){
-    int nb=5, k=5;
+    int nb=5, k=6;
     int array[5]={1,2,3,1,4};
     int result=subset_sum(k, nb, array);
     printf("\r\n %d\r\n", result);
+    return 0;
+}*/
+
+int main(){
+    int nb, k;
+    printf("what is the lenght of th array?\r\n");
+    scanf("%d", &nb);
+    printf("enter k ?\r\n");
+    scanf("%d", &k);
+    int array[nb];
+    printf("write the integers?\r\n");
+    for (int i = 0; i < nb ; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+    int result=subset_sum(k, nb, array);
+    printf("the nb of ways is %d\r\n", result);
     return 0;
 }
