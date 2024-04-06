@@ -49,7 +49,6 @@ int matrix[4][5] = {
     printf("\r\n %d", resultat);
     return 0;
 }*/
-
 int main(){
     int n, m;
     printf("what is n ?\r\n");
