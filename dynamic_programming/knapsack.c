@@ -11,43 +11,42 @@
 
 #include<stdio.h>
 
-int max(int size , int tab[size]){
-    int max= tab[0];
-    for (int i = 1; i < size; i++)
-    {
-        if(max<tab[i]){
-            max=tab[i];
-        }
-    }
-    return max;
+int max(int a ,  int b){
+    if(a>b){return a; }
+    else {return b; }
 }
 
 int knapsac(int cap, int items, int valeur[items], int weight[items]){
-    int resultat_val[cap+1];
-    int resultat_weight[cap+1];
-    //base case:
-    resultat_val[0]=0;
-    resultat_weight[0]=1;
-    for (int i = 1; i < cap+1 ; i++)
+    int resultat[items][cap+1];
+    for (int i = 1; i < items ; i++)
     {
-        resultat_val[i]=0;
-        resultat_weight[i]=-1;
-        for (int j=0; j<items; j++){
-            if(i-weight[j]>=0){
-                resultat_weight[i]=1;
-                resultat_val[i]=max(3 , (int[]){resultat_val[i], valeur[j] ,resultat_val[i-1]}) ;
+        for (int j=0; j<cap; j++){
+            if (i==0){
+                //the base case;
+                if(j<weight[i]){
+                  resultat[i][j]=0;  
+                }
+                else{
+                    resultat[i][j]=valeur[i];
+                }
             }
+            //otherwise
+            if(j-weight[i]>=0){
+                resultat[i][j]=max(valeur[i] + resultat[i-1][j-weight[i]], resultat[i-1][j]);
+                }
         }
     }
-for (int i = 0; i < cap+1; i++)
-{
-    printf("|%d",resultat_val[i] );
-}
+    for (int i = 1; i < items ; i++)
+    {
+        printf("\r\n----------------------------------------------------\r\n");
+        for (int j=0; j<cap; j++){
+            printf("| %d",resultat[i][j] );
+            
+        }
+    }
 printf("\r\n");
-return resultat_val[cap];
-
+return resultat[items-1][cap];
 }
-
 int main(){
     int items=5;
     int cap=20;
