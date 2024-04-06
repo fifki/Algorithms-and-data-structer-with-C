@@ -18,27 +18,40 @@ int max(int a ,  int b){
 
 int knapsac(int cap, int items, int valeur[items], int weight[items]){
     int resultat[items][cap+1];
-    for (int i = 1; i < items ; i++)
-    {
-        for (int j=0; j<cap; j++){
-            if (i==0){
-                //the base case;
-                if(j<weight[i]){
-                  resultat[i][j]=0;  
+    int somme_weight=0;
+    int somme_val=0; 
+    for(int i=0; i<items; i++){
+        somme_weight+=weight[i];
+        somme_val+=valeur[i];
+    }
+    if(cap==0){return 0;}
+    else if(cap>somme_weight){return somme_val;}
+    else{
+        for (int i = 0; i < items ; i++)
+        {
+            for (int j=0; j<cap+1; j++){
+                //the base case
+                if(i==0){
+                    if(weight[0]>j){
+                        resultat[i][j]=0;
+                    }
+                    else {
+                        resultat[i][j]=valeur[0];
+                    }
                 }
+                //otherwise
+                else if(weight[i]>j){
+                    resultat[i][j]=resultat[i-1][j];
+                    }
                 else{
-                    resultat[i][j]=valeur[i];
-                }
+                    resultat[i][j]=max(valeur[i] + resultat[i-1][j-weight[i]], resultat[i-1][j]);
+                    }         
             }
-            //otherwise
-            if(j-weight[i]>=0){
-                resultat[i][j]=max(valeur[i] + resultat[i-1][j-weight[i]], resultat[i-1][j]);
-                }
         }
     }
-    for (int i = 1; i < items ; i++)
+    for (int i = 0; i < items ; i++)
     {
-        printf("\r\n----------------------------------------------------\r\n");
+        printf("\r\n ---------------------------------------------------- \r\n");
         for (int j=0; j<cap; j++){
             printf("| %d",resultat[i][j] );
             
@@ -50,7 +63,7 @@ return resultat[items-1][cap];
 int main(){
     int items=5;
     int cap=20;
-    int valeur[5]={20,30,5,10,3};
+    int valeur[5]={20,30,15,25,10};
     int weight[5]={6,13,5,10,3};
     int result=knapsac(cap , items , valeur , weight);
     printf("%d\r\n", result);
