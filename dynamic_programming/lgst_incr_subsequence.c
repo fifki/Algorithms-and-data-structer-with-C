@@ -7,11 +7,12 @@ for (int i = 0; i < nb; i++)
 {
     somme=array[i];
     for (int j = i ; i < nb ; j++)
-
     {
         if(array[j+1]>array[j]){
         somme+=array[j+1];}
-        else 
+        else {
+            continue;
+        }
     }
     
 }
