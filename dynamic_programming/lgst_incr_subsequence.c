@@ -37,10 +37,27 @@ for (int i = 1; i < nb; i++)
     return maxi(nb , resultat);
 
 }
+//test
+/*
 int main(){
 int nb=13 ; 
 int array[13]={7, 5, 2, 4, 7, 2, 3, 6, 4, 5, 12, 1, 7};
 int resultat= longest(nb , array);
 printf("%d\r\n", resultat);
+    return 0;
+}*/ 
+
+int main(){
+    int nb;
+    printf("how many nb do u have?\r\n");
+    scanf("%d", &nb);
+    int array[nb];
+    printf("write the integers ?\r\n");
+    for (int i = 0; i < nb ; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+    int resultat= longest(nb , array);
+    printf("%d\r\n", resultat);
     return 0;
 }
