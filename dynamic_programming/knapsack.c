@@ -52,6 +52,7 @@ int knapsac(int cap, int items, int valeur[items], int weight[items]){
 return resultat[items-1][cap];
 } 
 //test 
+
 /*
 int main(){
     int items=5;
