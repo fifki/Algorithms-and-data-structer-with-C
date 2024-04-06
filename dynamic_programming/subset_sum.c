@@ -64,15 +64,15 @@ int subset_sum(int k, int nb , int array[nb]){
     return resultat[nb-1][k];
 }
 //test
-/*
+
 int main(){
     int nb=5, k=6;
     int array[5]={1,2,3,1,4};
     int result=subset_sum(k, nb, array);
     printf("\r\n %d\r\n", result);
     return 0;
-}*/
-
+}
+/*/
 int main(){
     int nb, k;
     printf("what is the lenght of th array?\r\n");
@@ -88,4 +88,4 @@ int main(){
     int result=subset_sum(k, nb, array);
     printf("the nb of ways is %d\r\n", result);
     return 0;
-}
+}*/
