@@ -46,9 +46,8 @@ matrices = [(40, 20), (20, 30), (30, 10), (10, 30), (30, 50)]
 output: 49000
 */
 
-int min(int a ,  int b){
-    if(a<b){return a; }
-    else {return b; }
+int min(int a, int b) {
+    return (a < b) ? a : b;
 }
 
 int matrix_chain(int n, int matrix[n][2]){
@@ -61,8 +60,6 @@ int j=0;
             resultat[i][j]=0;
         }
     }
-
-
     for(int d=1; d<n;d++){
         for(int i=0; i<n-d ; i++){
             j=i+d;
@@ -98,7 +95,6 @@ return resultat[0][n-1];
 
 int main(){
 int n=5;
-int nb =27000;
 int matrices[5][2] = {{40, 20},
                     {20, 30}, 
                     {30, 10}, 
