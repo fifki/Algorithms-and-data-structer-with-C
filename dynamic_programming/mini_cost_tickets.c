@@ -24,6 +24,11 @@ costs = [4, 10, 25]
 n = 32
 output: 28
 */
+int min(int size , int tab[size]);
+bool in_array(int n ,int b , int array[n]);
+int cost_ticket(int period , int day,int ncost, int train[day], int cost[ncost]);
+
+
 int min(int size , int tab[size]){
     int mini= tab[0];
     for (int i = 1; i < size; i++)
@@ -34,6 +39,8 @@ int min(int size , int tab[size]){
     }
 return mini;
 }
+
+
 bool in_array(int n ,int b , int array[n]){
 bool exist=false;
 for(int i=0; i<n; i++){
