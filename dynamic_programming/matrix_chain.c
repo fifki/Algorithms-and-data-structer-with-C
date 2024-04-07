@@ -45,12 +45,56 @@ input:
 matrices = [(40, 20), (20, 30), (30, 10), (10, 30), (30, 50)]
 output: 49000
 */
-int matrix_chain(int n, int matrix[n][2]){
 
-
-
+int min(int a ,  int b){
+    if(a<b){return a; }
+    else {return b; }
 }
 
+int matrix_chain(int n, int matrix[n][2]){
+int resultat[n][n];
+ long long int min_cost;
+int left_cost=0 , right_cost=0 , product_cost=0;
+int j=0;
+    for(int i=0; i<n;i++){
+        for(int j=0; j<n ; j++){
+            resultat[i][j]=0;
+        }
+    }
+
+
+    for(int d=1; d<n;d++){
+        for(int i=0; i<n-d ; i++){
+            j=i+d;
+            min_cost=1000000000000;
+            for(int k=i; k<j ; k++){
+                left_cost=resultat[i][k];
+                right_cost=resultat[k+1][j];
+                product_cost=matrix[i][0]*matrix[k][1]*matrix[j][1];
+                min_cost=min(min_cost, left_cost+right_cost+product_cost);
+            }
+        resultat[i][j]=min_cost;
+        }
+    }
+    for(int i=0; i<n;i++){
+        printf("\r\n -------------------------------\r\n ");
+        for(int j=0; j<n ; j++){
+            printf("| %d " , resultat[i][j]);
+        }
+    }
+return resultat[0][n-1];
+}
+/*
+---------------------------------
+    0 | 1 | 2 | 3 | 4 |
+
+0|  A |AB|ABC|ABCD|ABCDE|
+1|    |B |BC |BCD |BCDE |
+2|    |  | C |CD  |CDE  |
+3|    |  |   | D  | DE  |
+4|    |  |   |    | E   |
+
+*/
 
 int main(){
 int n=5;
