@@ -56,6 +56,7 @@ int cost_ticket(int period , int day,int ncost, int train[day], int cost[ncost])
 int resultat[period];
 int day_cost=0,week_cost=0, month_cost=0;
 for(int i =0; i<period; i++){
+    resultat[i]=0;
     if (in_array( day, i, train) == 0 ){
         if(i-1>=0){resultat[i]=resultat[i-1]; }
         else{resultat[i]=0;}
