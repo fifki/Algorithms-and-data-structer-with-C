@@ -60,6 +60,7 @@ int matrices[5][2] = {{40, 20},
                     {30, 10}, 
                     {10, 30}, 
                     {30, 50}};
+ //the correct output is 49000
 int resultat=matrix_chain(n,matrices);
 printf("%d\r\n", resultat);
     return 0;
