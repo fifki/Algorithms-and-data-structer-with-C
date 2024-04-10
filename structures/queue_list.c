@@ -2,116 +2,130 @@
 #include <stdlib.h>
 #include <string.h>
 
-// On ajoute un 1 car il faut toujours au moins un espace vide dans la file.
+// On ajoute un 1 car il faut toujours au moins un espace vide dans la Queue.
 #define TAILLE 101
 #define next(x) ((x+1) % TAILLE)
 
-typedef struct {
-    int D;
-    int F;
-    int tab[TAILLE];
+typedef struct Cell{
+    int val;
+    struct Cell * next ;
   
-} File;
+} Cell;
 
-/* Init allocates the structure File and
+typedef struct {
+    Cell * first ;
+    Cell * last;
+} Queue;
+
+/* Init allocates the structure Queue and
  * also the membre array with the given size 
  * it also fill allocated (size) and intializes 
  * filled to 0 */
-File * Init();
+Queue * Init(int size);
 
-/* InsertValue insert value into the binary file
+/* InsertValue insert value into the binary Queue
  * the array is reallocated if necessary (allocated changed 
  * with respect to the new size )
  * filled is incremented by 1 */
-void Empiler(File * file, int value);
+void EnQueue(Queue * queue, int value);
 
-/* ExtractMAx returns 0 if the binary file is empty
+/* ExtractMAx returns 0 if the binary Queue is empty
  * otherwise it return 1 and fills *val with the maximum 
- * value present in the binary file
+ * value present in the binary Queue
  * filled is decremented by 1  and the max value is removed
- * from the binary file */
-int Depiler(File * file, int * valDepilee);
+ * from the binary Queue */
+int DeQueue(Queue * queue, int * val);
 
-int Vide(File * file);
+//int Vide(Queue * queue);
 
-int Pleine(File * file);
+//int Pleine(Queue * queue);
 
 /* Destroy frees the structure and the array */
-void Deconstruire(File * file);
+void Destroy(Queue * queue);
 
 
 int main(void) 
 {
   char lecture[100];
   int val;
-  File * file;
-  file = Init();
+  Queue * queue;
+  queue = Init(10);
 
   fscanf(stdin,"%99s",lecture);
   while (strcmp(lecture,"bye")!=0) {
     if (strcmp(lecture,"queue")==0) {
       fscanf(stdin,"%99s",lecture);
       val = strtol(lecture,NULL,10);
-      Empiler(file,val);
+      EnQueue(queue,val);
     } else if (strcmp(lecture,"dequeue")==0) {
-      if(Depiler(file,&val))
+      if(DeQueue(queue,&val))
       {
         printf("%d\r\n",val);
       }
     }
     fscanf(stdin,"%99s",lecture);
   }
-  Deconstruire(file);
+  Destroy(queue);
   return 0;
 }
-
-int Vide(File * file)
+/*/
+int Vide(Queue * Queue)
 {
-    return file->F == file->D;
+    return Queue->F == Queue->D;
 }
 
-int Pleine(File * file)
+int Pleine(Queue * Queue)
 {
-    return next(file->F) == file->D;
+    return next(Queue->F) == Queue->D;
+}*/
+
+Queue * Init(int size)
+{
+  Queue * queue;
+  queue = ( Queue*)malloc(sizeof(Queue));
+  queue->first= NULL;
+  queue->last=NULL;
+  return queue;
 }
 
-File * Init()
+void EnQueue(Queue * queue, int value)
 {
-  File * file;
-  file = malloc(sizeof(File));
-  file->F = 0;
-  file->D = 0;
-  return file;
-}
-
-void Empiler(File * file, int value)
-{
-    if(!Pleine(file))
-    {
-        file->tab[file->F]=value;
-        file->F=next(file->F);
+    Cell * c =(Cell*) malloc(sizeof(Cell));
+    c->val=value;
+    c->next=NULL;
+    if(!queue->last){
+        queue->first=c;
     }
+    else{
+        queue->last->next=c;
+    }
+    queue->last=c;
 }
 
 
-int Depiler(File * file, int *res)
+int DeQueue(Queue * queue, int *res)
 {
-  if(Vide(file))
+  if(!queue->first)// if first is NULL
   {
     return 0;
   }
-
-  *res = file->tab[file->D];
-  file->D = next(file->D);
+  Cell * toFree=queue->first;
+  *res = queue->first->val;
+  queue->first=queue->first->next;
+  if(!queue->first){
+    queue->last=NULL;
+  }
+  free(toFree);
+  return 1;
+ /**
+  *res = queue->tab[queue->D];
+  queue->D = next(queue->D);
 
   return 1;
-  
+  */
 }
 
-void Deconstruire(File * file)
+void Destroy(Queue * queue)
 {
-	if (file)
-    {
-		free(file);
-	}
+	free(queue);
 }
