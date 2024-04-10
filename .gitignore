@@ -15,3 +15,4 @@ dynamic_programming/matrix_chain.exe
 structures/queue_array.exe
 structures/queue_list.exe
 structures/hash_table.exe
+structures/binary_heap.exe
