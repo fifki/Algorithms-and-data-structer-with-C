@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define left(i)  (2*(i)+1)
+#define right(i)  (2*(i)+2)
+#define parent(i)  (((i)-1)/2)
+
 typedef struct {
   int allocated; /* current allcoation of array */
   int filled;    /* number of items present in the binheap */
@@ -30,6 +34,13 @@ int ExtractMax(BinaryHeap * heap, int * val);
 /* Destroy frees the structure and the array */
 void Destroy(BinaryHeap * heap);
 
+void Print(BinaryHeap * h ){
+    int i;
+    for(i=0;i<h->filled; i++){
+        printf("| %d", h->array[i]);
+    }
+    printf("\r\n");
+}
 
 int main(void) 
 {
@@ -50,6 +61,7 @@ int main(void)
         printf("%d\r\n",val);
       }
     }
+    Print(heap);
     fscanf(stdin,"%99s",lecture);
   }
   Destroy(heap);
@@ -66,16 +78,74 @@ BinaryHeap * Init(int size)
   return heap;
 }
 
+#define swap(i,j) tmp (i):(i)=(j):(j)=tmp
+
 void InsertValue(BinaryHeap * heap, int value)
 {
-  /* put your insert code here */
+     if (heap->filled == heap->allocated) 
+        {
+                heap->allocated += 10;
+                heap->array = (int*) realloc(heap->array, sizeof(int) * heap->allocated);
+        }
+
+        
+        heap->array[heap->filled] = value;
+        int current = heap->filled;
+        while (heap->array[current] > heap->array[parent(current)] )
+        {
+                int temp = heap->array[parent(current)];
+                heap->array[parent(current)] = heap->array[current];
+                heap->array[current] = temp;
+                current = parent(current);
+        }
+        heap->filled++;
+
+
+
+
 }
 
 int ExtractMax(BinaryHeap * heap, int *res)
 {
-  /* put your extraction code here */
-  return 0;
+  if (heap->filled == 0)
+		{
+				return 0;
+		}
+		
+    *res = heap->array[0];
+    heap->array[0] = heap->array[heap->filled-1];
+    heap->array[heap->filled-1] = 0;
+    heap->filled--;
+    		int index = 0;
+		//Tant qu'il existe un noeud fils qui a une valeur plus grande
+		while ((left(index) < heap->filled && heap->array[index] < heap->array[left(index)])
+			|| (right(index) < heap->filled && heap->array[index] < heap->array[right(index)]))
+		{
+				//Quel est le noeud qui existe et qui a la valeur maximale ?
+				int next_index;
+				if(left(index) < heap->filled && right(index) < heap->filled)
+				{
+					next_index = (heap->array[left(index)] > heap->array[right(index)]) ? left(index) : right(index);
+				}
+				else if(left(index) >= heap->filled)
+				{
+					next_index = right(index);
+				}
+				else if(right(index) >= heap->filled)
+				{
+					next_index = left(index);
+				}
+				
+				//Echanger les valeurs avec ce noeud fils
+				int tmp = heap->array[index];
+				heap->array[index] = heap->array[next_index];
+				heap->array[next_index] = tmp;
+				
+				index = next_index;
+		}
+		return 1;
 }
+
 
 void Destroy(BinaryHeap * heap)
 {
