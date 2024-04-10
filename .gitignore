@@ -17,3 +17,4 @@ structures/queue_list.exe
 structures/hash_table.exe
 structures/binary_heap.exe
 structures/stack_list.exe
+structures/stack_array.exe
