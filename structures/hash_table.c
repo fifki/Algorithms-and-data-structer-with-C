@@ -66,7 +66,7 @@ int main(void)
       {
          if (fscanf(stdin,"%99s",lecture)!=1)
             error();
-         key = strdup(lecture);
+         //key = strdup(lecture);
          Delete(h,lecture);
       }
       else if (strcmp(lecture,"query")==0)
