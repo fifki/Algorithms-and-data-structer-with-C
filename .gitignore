@@ -20,3 +20,6 @@ structures/stack_list.exe
 structures/stack_array.exe
 structures/vector.exe
 structures/vector_list.exe
+structures/list.exe
+structures/binary_tree.exe
+structures/linked_list.exe
